@@ -2,7 +2,6 @@
 
 node('haimaxy-jnlp') {
     stage('Prepare') {
-			  git url: "https://github.com/gaojila/jenkins-demo.git"
 			  echo 'Pulling...' + env.BRANCH_NAME
         checkout scm
         script {
@@ -17,7 +16,7 @@ node('haimaxy-jnlp') {
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
-        sh "docker build -t gaojila/jenkins-demo/jenkins-k8s:${build_tag} ."
+        sh "docker build -f jenkins-k8s/Dockerfile -t gaojila/jenkins-k8s:${build_tag} ."
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
