@@ -16,6 +16,3 @@ spec:
       - image: gaojila/jenkins-k8s:<BUILD_TAG>
         imagePullPolicy: IfNotPresent
         name: jenkins-k8s
-        env:
-        - name: branch
-          value: <BRANCH_NAME>
