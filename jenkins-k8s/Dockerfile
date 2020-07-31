@@ -1,6 +1,6 @@
 FROM golang:1.8.0-alpine
 
-ADD . /go/src/app
+ADD jenkins-k8s /go/src/app
 
 WORKDIR /go/src/app
 
