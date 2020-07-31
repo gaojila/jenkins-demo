@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 node('haimaxy-jnlp') {
     stage('Prepare') {
         echo "1.Prepare Stage"
@@ -7,6 +9,7 @@ node('haimaxy-jnlp') {
             if (env.BRANCH_NAME != 'master') {
                 build_tag = "${env.BRANCH_NAME}-${build_tag}"
             }
+						echo "${build_tag}"
         }
     }
     stage('Test') {
@@ -14,7 +17,7 @@ node('haimaxy-jnlp') {
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
-        sh "docker build -t gaojila/jenkins-demo/jenkins-k8s:${build_tag} ."
+        sh "docker build -t gaojila/jenkins-k8s:${build_tag} ."
     }
     stage('Push') {
         echo "4.Push Docker Image Stage"
