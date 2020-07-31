@@ -5,11 +5,8 @@ node('haimaxy-jnlp') {
         echo "1.Prepare Stage"
         checkout scm
         script {
-            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-            branch_name = sh(returnStdout: true, script: 'git symbolic-ref --short -q HEAD').trim()
-            if ("$branch_name" != 'master') {
-                build_tag = "${branch_name}-${build_tag}"
-            }
+            commit_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+            build_tag = "${env.BRANCH_NAME}-${commit_tag}"
         }
     }
     stage('Test') {
